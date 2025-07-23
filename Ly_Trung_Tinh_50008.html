@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Ly Trung Tinh - Download Contact</title>
+</head>
+<body>
+<script>
+  // Auto-download vCard when page loads
+  window.onload = function() {
+    var link = document.createElement('a');
+    link.href = 'D:\QR code\vCard\Ly_Trung_Tinh_50008.vcf';
+    link.download = 'Ly_Trung_Tinh_50008.vcf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+</script>
+<h2>Downloading contact: Ly Trung Tinh</h2>
+</body>
+</html>
