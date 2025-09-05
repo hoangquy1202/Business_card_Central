@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tran Quang Tuan - Digital Business Card</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #1e2c58;
+            overflow: hidden; /* Added to hide content outside the body */
+        }
+
+        .container {
+            background-color: #fff;
+            width: 320px;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: visible; /* CHANGED: allow content to overflow */
+            z-index: 1; /* Added to make container above body */
+        }
+
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .logo-image {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-top: 5px;
+            width: 100%;
+        }
+
+        .contact-info p {
+            margin-bottom: 20px;
+        }
+
+        .head-office {
+            margin-top: 25px;
+            width: 100%;
+        }
+
+        .head-office p {
+            margin-bottom: 8px;
+        }
+
+        .logo-area {
+            text-align: center;
+        }
+
+        .head-office-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: center;
+        }
+
+        .background-logo {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        /* Button styles */
+        .save-contact-button {
+            background-color: #1e2c58; 
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            /* Float the button */
+            position: absolute;
+            bottom: -20px; /* Adjust for overlap */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2; /* Ensure button is on top */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Optional shadow */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://github.com/hoangquy1202/Business_card_Central/blob/main/background-logo-business-card.png" alt="" class="background-logo">
+        <div class="header">
+            <div class="logo-area">
+                <img src="https://github.com/hoangquy1202/Business_card_Central/blob/main/central-logo-business-card.png" alt="Central Construction Company Logo" class="logo-image">
+            </div>
+        </div>
+
+        <div class="main-info">
+            <div class="name">TRAN QUANG TUAN</div>
+            <div class="title">Chairman/CEO</div>
+        </div>
+
+        <div class="contact-info">
+            <p><strong>Phone:</strong> +84 90 383 5274</p>
+            <p><strong>Email:</strong> quangtuan@centralcons.vn</p>
+        </div>
+
+        <div class="head-office">
+            <div class="head-office-title">HEAD OFFICE</div>
+            <p><strong>Address:</strong> 204/9 Nguyen Van Huong, An Khanh Ward, HCMC</p>
+            <p><strong>Telephone:</strong> +84 (28) 3620 5151</p>
+            <p><strong>Email:</strong> contact@centralcons.vn</p>
+            <p><strong>Website:</strong> centralcons.vn - Tax: 0314476689</p>
+
+        </div>
+
+        <button class="save-contact-button" onclick="downloadVCard()">Save Contact</button>
+    </div>
+
+    <script>
+        function downloadVCard() {
+            const vCardData = `
+BEGIN:VCARD
+VERSION:3.0
+N:Tran Quang;Tuan
+FN:Tran Quang Tuan
+ORG:Central Construction;
+ADR:;;204/9 Nguyen Van Huong;Ho Chi Minh;An Khanh Ward;;Viet Nam
+TITLE:Chairman/CEO
+TEL;TYPE=MOBILE:+84903835274
+TEL;TYPE=WORK:+842836205151
+EMAIL:quangtuan@centralcons.vn
+URL:https://www.centralcons.vn
+NOTE:Company Tax Code: 0314476689
+END:VCARD
+`.trim();
+
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Tran Quang Tuan.vcf';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+
+</body>
+</html>
